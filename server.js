@@ -14,6 +14,13 @@ app.get("/employees", (req, res)=> {
     res.json(employees);
 });
 
+// tried to figure the random part by myself but couldn't figure it out,
+// did noticed something to do with Math.random but couldn't figure out how to use it in this function
+app.get("/employees/random", (req, res) => {
+    const i = Math.floor(Math.random() * employees.length);
+    res.json(employees[i]);
+});
+
 app.get("/employees/:index", (req, res) => {
     const { index } = req.params;
     if (index < 0 || index >= employees.length) {
@@ -22,12 +29,6 @@ app.get("/employees/:index", (req, res) => {
         res.json(employees[index]);
     }
 });
-
-app.get("/employees/:index", (req, res) => {
-    const { index } = req.params;
-    if (index < 0 || index >= employees.random) {
-    };
-})
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}.`);
